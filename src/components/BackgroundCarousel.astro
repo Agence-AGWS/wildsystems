@@ -1,0 +1,214 @@
+---
+// Récupération des images du dossier
+// Définir les images manuellement pour éviter les problèmes de lecture de dossier côté serveur
+const imagesDir = 'img';
+const imageFiles = [
+    '/img/WS---site-v1---photo-n°1.jpg',
+    '/img/WS---site-v1---photo-n°2.jpg',
+    '/img/WS---site-v1---photo-n°3.jpg',
+    '/img/WS---site-v1---photo-n°6.jpg',
+    '/img/WS---site-v1---photo-n°7-crop.jpg',
+    '/img/WS---site-v1---photo-n°8.jpg',
+    '/img/WS---site-v1---photo-n°9.jpg',
+    '/img/WS---site-v1---photo-n°10.jpg',
+    '/img/WS---site-v1---photo-n°11.jpg',
+    '/img/WS---site-v1---photo-n°12.jpg',
+    '/img/WS---site-v1---photo-n°13.jpg',
+    '/img/WS---site-v1---photo-n°15.jpg',
+    '/img/WS---site-v1---photo-n°16.jpg',
+    '/img/Ws---site-v1---photo-n°17.jpg',
+    '/img/WS---site-v1---photo-n°18.jpg',
+    '/img/WS---site-v1---photo-n°19.jpg',
+    '/img/WS---site-v1---photo-n°20.jpg',
+    '/img/WS---site-v1---photo-n°21.jpg',
+    '/img/WS---site-v1---photo-n°22.jpg',
+    '/img/WS---site-v1---photo-n°23.jpg'
+];
+
+// Mélanger les images aléatoirement pour plus de dynamisme
+const shuffledImages = [...imageFiles].sort(() => Math.random() - 0.5);
+---
+
+<div class="background-carousel">
+    <div class="carousel-container">
+        {shuffledImages.map((imagePath, index) => (
+            <div class="carousel-slide" data-index={index} style={index === 0 ? 'opacity: 1;' : 'opacity: 0;'}>
+                <img src={imagePath} alt="" />
+            </div>
+        ))}
+    </div>
+    
+    <button class="carousel-arrow carousel-arrow-left" aria-label="Image précédente">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+    </button>
+    
+    <button class="carousel-arrow carousel-arrow-right" aria-label="Image suivante">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+    </button>
+</div>
+
+<style>
+    .background-carousel {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+    }
+
+    .carousel-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    .carousel-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 1.5s ease-in-out;
+    }
+
+    .carousel-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .carousel-arrow {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.3);
+        color: white;
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 100;
+        transition: background 0.3s ease;
+    }
+    
+    .carousel-arrow:hover {
+        background: rgba(0, 0, 0, 0.6);
+    }
+    
+    .carousel-arrow svg {
+        width: 24px;
+        height: 24px;
+        stroke-width: 2;
+    }
+    
+    .carousel-arrow-left {
+        left: 20px;
+    }
+    
+    .carousel-arrow-right {
+        right: 20px;
+    }
+    
+    @media (max-width: 768px) {
+        .carousel-arrow {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .carousel-arrow-left {
+            left: 10px;
+        }
+        
+        .carousel-arrow-right {
+            right: 10px;
+        }
+    }
+</style>
+
+<script is:inline>
+    document.addEventListener('DOMContentLoaded', function() {
+        initCarousel();
+    });
+
+    // Fonction d'initialisation au chargement de la page et après navigation Astro
+    document.addEventListener('astro:page-load', function() {
+        initCarousel();
+    });
+
+    function initCarousel() {
+        // Sélection des éléments du carrousel
+        const slides = document.querySelectorAll('.carousel-slide');
+        const leftArrow = document.querySelector('.carousel-arrow-left');
+        const rightArrow = document.querySelector('.carousel-arrow-right');
+        
+        // Vérifier qu'il y a des slides
+        if (!slides || slides.length === 0) return;
+        
+        // Index du slide actuel
+        let currentIndex = 0;
+        let timer = null;
+        
+        // S'assurer que le premier slide est visible
+        updateSlides();
+        
+        // Fonction pour mettre à jour l'affichage des slides
+        function updateSlides() {
+            // Masquer tous les slides
+            slides.forEach(slide => {
+                slide.style.opacity = '0';
+            });
+            
+            // Afficher le slide actuel
+            slides[currentIndex].style.opacity = '1';
+        }
+        
+        // Fonction pour passer au slide suivant
+        function goToNextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateSlides();
+            resetTimer();
+        }
+        
+        // Fonction pour passer au slide précédent
+        function goToPrevSlide() {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateSlides();
+            resetTimer();
+        }
+        
+        // Fonction pour redémarrer le timer
+        function resetTimer() {
+            clearInterval(timer);
+            timer = setInterval(goToNextSlide, 3000);
+        }
+        
+        // Démarrer le timer
+        resetTimer();
+        
+        // Ajouter les écouteurs d'événements pour les flèches
+        if (leftArrow) {
+            leftArrow.addEventListener('click', function(e) {
+                e.preventDefault();
+                goToPrevSlide();
+            });
+        }
+        
+        if (rightArrow) {
+            rightArrow.addEventListener('click', function(e) {
+                e.preventDefault();
+                goToNextSlide();
+            });
+        }
+    }
+</script> 

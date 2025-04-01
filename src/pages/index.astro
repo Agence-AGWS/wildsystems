@@ -1,0 +1,166 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BackgroundCarousel from '../components/BackgroundCarousel.astro';
+---
+
+<Layout>
+	<BackgroundCarousel />
+	
+	<header>
+		<div class="header-content">
+			<h1>wild systems</h1>
+			<a href="/contact" class="contact-button">Contact</a>
+		</div>
+	</header>
+
+	<footer class="desktop-footer">
+		<div class="credits-left">
+			<p>benoit linéro</p>
+			<p>photographe</p>
+		</div>
+
+		<div class="credits-center">
+			<p>vincent benhamou</p>
+			<p>architecte</p>
+		</div>
+
+		<div class="credits-right">
+			<p>alexandre grosse</p>
+			<p>webdesign</p>
+		</div>
+	</footer>
+	
+	<!-- Version mobile des crédits -->
+	<footer class="mobile-footer">
+		<div class="mobile-credit">
+			<span>vincent benhamou</span> <span>architecte</span>
+		</div>
+		<div class="mobile-credit">
+			<span>benoit linéro</span> <span>photographe</span>
+		</div>
+		<div class="mobile-credit">
+			<span>alexandre grosse</span> <span>webdesign</span>
+		</div>
+	</footer>
+</Layout>
+
+<style>
+	header {
+		position: fixed;
+		top: 2rem;
+		left: 2rem;
+		right: 2rem;
+		z-index: 10;
+	}
+	
+	.header-content {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	
+	h1 {
+		color: white;
+		font-size: 2.5rem;
+		font-weight: normal;
+		margin: 0;
+		text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	}
+	
+	.contact-button {
+		color: white;
+		text-decoration: none;
+		font-size: 1.2rem;
+		text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+		transition: opacity 0.3s ease;
+	}
+	
+	.contact-button:hover {
+		opacity: 0.8;
+	}
+
+	/* Style pour les crédits en bas de page */
+	.desktop-footer {
+		position: fixed;
+		bottom: 2rem;
+		left: 2rem;
+		right: 2rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+		color: white;
+		z-index: 10;
+	}
+
+	.desktop-footer p {
+		margin: 0;
+		line-height: 1.2;
+		text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	}
+
+	.credits-left, .credits-center, .credits-right {
+		text-align: center;
+	}
+
+	.credits-left {
+		text-align: left;
+	}
+
+	.credits-right {
+		text-align: right;
+	}
+	
+	/* Style pour la version mobile des crédits */
+	.mobile-footer {
+		display: none;
+		position: fixed;
+		bottom: 0.5rem;
+		left: 0;
+		right: 0;
+		flex-direction: column;
+		align-items: center;
+		color: white;
+		z-index: 10;
+		text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+		font-size: 0.9rem;
+		gap: 0.25rem;
+	}
+	
+	.mobile-credit {
+		margin: 0;
+		padding: 0;
+	}
+	
+	/* Version mobile */
+	@media (max-width: 768px) {
+		header {
+			top: 2rem;
+			left: 1rem;
+			right: 1rem;
+		}
+		
+		.header-content {
+			flex-direction: column;
+			align-items: center;
+			gap: 1rem;
+			text-align: center;
+		}
+		
+		h1 {
+			font-size: 2rem;
+		}
+		
+		.contact-button {
+			font-size: 1rem;
+		}
+
+		/* Afficher/masquer les versions des crédits */
+		.desktop-footer {
+			display: none;
+		}
+		
+		.mobile-footer {
+			display: flex;
+		}
+	}
+</style>
