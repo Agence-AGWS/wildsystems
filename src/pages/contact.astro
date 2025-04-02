@@ -8,50 +8,45 @@ import Layout from '../layouts/Layout.astro';
 			<img src="/image.png" alt="Vincent Benhamou" class="vincent-photo">
 		</div>
 		
-		<header>
-			<div class="header-content">
-				<h1>wild systems</h1>
-				<a href="/" class="back-button">retour</a>
-			</div>
-		</header>
-		
-		<div class="content-container">
-			<div class="form-container">
+		<div class="left-header">
+			<h1>wild systems</h1>
+		</div>
+
+		<div class="right-content">
+			<a href="/" class="back-button">retour</a>
+
+			<div class="form-section">
 				<form class="contact-form">
 					<div class="form-group">
-						<label for="name">nom prénom</label>
-						<input type="text" id="name" name="name" required class="round-input">
+						<input type="text" id="name" name="name" placeholder="nom prénom" required class="round-input">
 					</div>
 					
 					<div class="form-group">
-						<label for="phone">numéro de telephone</label>
-						<input type="tel" id="phone" name="phone" required class="round-input">
+						<input type="tel" id="phone" name="phone" placeholder="numéro de telephone" required class="round-input">
 					</div>
 					
 					<div class="form-group">
-						<label for="email">adresse mail</label>
-						<input type="email" id="email" name="email" required class="round-input">
+						<input type="email" id="email" name="email" placeholder="adresse mail" required class="round-input">
 					</div>
 					
 					<div class="form-group">
-						<label for="message">message</label>
-						<textarea id="message" name="message" rows="5" required class="round-input"></textarea>
+						<textarea id="message" name="message" placeholder="message" rows="5" required class="round-input"></textarea>
 					</div>
 					
 					<button type="submit" class="round-button">envoyer</button>
 				</form>
-				
-				<div class="contact-info">
-					<p>81 bis rue de la troche 78490 grosrouvre</p>
-					<p>vincent.benhamou@wildsystems.fr</p>
-					<p>+33 7 49 69 62 55</p>
-				</div>
 
 				<div class="theory-text">
 					<p>Selon la Théorie des Systèmes Sauvages - Wild Systems Theory, "toutes les propriétés sont constituées de et par leurs relations avec le contexte. En conséquence, toutes les propriétés sont intrinsèquement significatives car elles concernent naturellement et nécessairement les contextes dans lesquels elles persistent. Dans cette perspective, le sens est un réseau omniprésent d'interrelations. Le choix est le moyen par lequel nous y naviguons. Le soi est le modèle d'interrelations que nous incarnons et gérons au cours de notre vie. Parce que ces soi significatifs émergent progressivement de la trajectoire de la vie vécue, ils ressemblent à une histoire ; c'est-à-dire que ce sont des récits. Et parce que ces récits reflètent toujours une constellation de choix et de hasard, ils sont sauvages.</p>
 					<p>Bref, nous sommes des récits sauvages."</p>
 					<p class="citation">(Wild Systems Theory: Non-Reductive Naturalism and Narratives of Meaning, Choice, and Self. J. Scott Jordan)</p>
 				</div>
+			</div>
+
+			<div class="contact-info">
+				<p>81 bis route de la troche 78490 grosrouvre fr</p>
+				<p>vincent.benhamou@wildsystems.fr</p>
+				<p>+33 7 49 69 62 55</p>
 			</div>
 		</div>
 	</div>
@@ -60,10 +55,9 @@ import Layout from '../layouts/Layout.astro';
 <style>
 	.contact-page {
 		min-height: 100vh;
+		background-color: black;
 		color: white;
-		position: relative;
 		display: flex;
-		flex-direction: column;
 	}
 
 	.background-image {
@@ -73,178 +67,166 @@ import Layout from '../layouts/Layout.astro';
 		width: 50%;
 		height: 100vh;
 		overflow: hidden;
-		z-index: 0;
+		background-color: black;
 	}
 
 	.vincent-photo {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		object-position: top center;
+		object-position: center;
 	}
 
-	header {
-		position: relative;
+	.left-header {
+		position: fixed;
+		top: 2rem;
+		left: 2rem;
+		z-index: 2;
+	}
+
+	.right-content {
+		margin-left: 50%;
+		width: 50%;
 		padding: 2rem;
-		z-index: 1;
-	}
-
-	.content-container {
-		position: relative;
-		z-index: 1;
-		display: flex;
-		justify-content: flex-end;
-		flex: 1;
-		padding: 0 2rem;
-	}
-
-	.form-container {
-		width: 40%;
-		padding-right: 2rem;
 		display: flex;
 		flex-direction: column;
-		gap: 2rem;
+		min-height: 100vh;
+		background-color: black;
+	}
+
+	h1 {
+		font-size: 2.5rem;
+		font-weight: normal;
+		margin: 0;
+		line-height: 1;
+		color: white;
+	}
+
+	.back-button {
+		color: white;
+		text-decoration: none;
+		font-size: 1.2rem;
+		line-height: 1;
+		align-self: flex-end;
+	}
+
+	.form-section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.8rem;
+		flex: 1;
+		justify-content: flex-start;
+		padding-top: 3rem;
+		width: 100%;
 	}
 
 	.contact-form {
 		display: flex;
 		flex-direction: column;
 		gap: 0.8rem;
+		padding: 0 2rem;
+		width: 100%;
+		max-width: 600px;
+		margin: 0 auto;
+	}
+
+	.form-group {
+		width: 100%;
+	}
+
+	.round-input {
+		width: 100%;
+		box-sizing: border-box;
+		background-color: transparent;
+		border: 1px solid rgba(255, 255, 255, 0.3);
+		padding: 0.7rem 1rem;
+		color: white;
+		font-family: inherit;
+		font-size: 0.9rem;
+		border-radius: 4px;
+	}
+
+	.round-input::placeholder {
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	textarea.round-input {
+		resize: none;
+		height: 100px;
+	}
+
+	.round-button {
+		align-self: flex-end;
+		background-color: transparent;
+		color: white;
+		border: none;
+		padding: 0.5rem 1rem;
+		font-family: inherit;
+		font-size: 0.9rem;
+		cursor: pointer;
 	}
 
 	.theory-text {
-		margin-top: 2rem;
-		text-align: left;
-		font-size: 0.85rem;
+		margin-top: 1rem;
+		font-size: 0.75rem;
 		line-height: 1.4;
+		color: rgba(255, 255, 255, 0.7);
+		padding: 0 2rem;
+		margin-bottom: 0.5rem;
 	}
 
 	.theory-text p {
-		margin: 0.5rem 0;
+		margin: 0.2rem 0;
 	}
 
 	.theory-text .citation {
 		font-style: italic;
-		font-size: 0.75rem;
-		margin-top: 1rem;
+		font-size: 0.7rem;
+		margin-top: 0.3rem;
+		margin-bottom: 0.3rem;
+	}
+
+	.contact-info {
+		padding: 0 2rem;
+		margin-top: 0;
+	}
+
+	.contact-info p {
+		margin: 0.15rem 0;
+		font-size: 0.8rem;
+		color: rgba(255, 255, 255, 0.8);
 	}
 
 	@media (max-width: 768px) {
+		.contact-page {
+			flex-direction: column;
+		}
+
 		.background-image {
-			width: 100%;
-			height: 35vh;
 			position: relative;
-		}
-
-		.content-container {
-			padding: 1rem;
-		}
-
-		.form-container {
 			width: 100%;
-			padding-right: 0;
+			height: 40vh;
+		}
+
+		.left-header {
+			position: absolute;
+		}
+
+		.right-content {
+			margin-left: 0;
+			width: 100%;
+			padding: 1rem;
+			min-height: auto;
+		}
+
+		.form-section {
+			padding: 1rem;
+			padding-top: 2rem;
 		}
 
 		.theory-text {
-			font-size: 0.8rem;
+			margin-top: 1rem;
+			margin-bottom: 1rem;
 		}
-	}
-
-	.header-content {
-		width: 100%;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-	
-	h1 {
-		font-size: 2.5rem;
-		font-weight: normal;
-		margin: 0;
-		text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-	}
-	
-	.back-button {
-		color: white;
-		text-decoration: none;
-		font-size: 1.2rem;
-		text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-		transition: opacity 0.3s ease;
-	}
-	
-	.back-button:hover {
-		opacity: 0.8;
-	}
-	
-	/* Layout pour le contenu de la page contact */
-	.contact-container {
-		display: flex;
-		gap: 2rem;
-		max-width: 100%;
-		margin: 0 auto;
-		flex: 1;
-		overflow: hidden;
-	}
-	
-	.form-group {
-		display: flex;
-		flex-direction: column;
-		gap: 0.3rem;
-	}
-	
-	label {
-		font-size: 0.9rem;
-		margin-left: 0.5rem;
-	}
-	
-	.round-input {
-		background-color: rgba(255, 255, 255, 0.1);
-		border: 1px solid rgba(255, 255, 255, 0.3);
-		padding: 0.7rem 1rem;
-		font-family: 'AndaleMono', monospace;
-		color: white;
-		font-size: 0.9rem;
-		border-radius: 50px;
-	}
-	
-	textarea.round-input {
-		border-radius: 20px;
-		resize: none;
-	}
-	
-	.round-input:focus {
-		outline: none;
-		border-color: white;
-	}
-	
-	.round-button {
-		background-color: transparent;
-		color: white;
-		border: 1px solid white;
-		padding: 0.7rem 1.5rem;
-		font-family: 'AndaleMono', monospace;
-		font-size: 0.9rem;
-		cursor: pointer;
-		transition: all 0.3s ease;
-		margin-top: 0.5rem;
-		align-self: flex-start;
-		border-radius: 50px;
-	}
-	
-	.round-button:hover {
-		background-color: rgba(255, 255, 255, 0.2);
-	}
-	
-	/* Style pour les coordonnées */
-	.contact-info {
-		margin-top: 1rem;
-		text-align: left;
-		padding-left: 0.5rem;
-	}
-	
-	.contact-info p {
-		margin: 0.2rem 0;
-		font-size: 0.8rem;
-		opacity: 0.8;
 	}
 </style>
