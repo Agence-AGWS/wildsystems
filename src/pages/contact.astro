@@ -48,6 +48,12 @@ import Layout from '../layouts/Layout.astro';
 				</div>
 			</div>
 		</div>
+		
+		<div class="theory-text">
+			<p>Selon la Théorie des Systèmes Sauvages - Wild Systems Theory, "toutes les propriétés sont constituées de et par leurs relations avec le contexte. En conséquence, toutes les propriétés sont intrinsèquement significatives car elles concernent naturellement et nécessairement les contextes dans lesquels elles persistent. Dans cette perspective, le sens est un réseau omniprésent d'interrelations. Le choix est le moyen par lequel nous y naviguons. Le soi est le modèle d'interrelations que nous incarnons et gérons au cours de notre vie. Parce que ces soi significatifs émergent progressivement de la trajectoire de la vie vécue, ils ressemblent à une histoire ; c'est-à-dire que ce sont des récits. Et parce que ces récits reflètent toujours une constellation de choix et de hasard, ils sont sauvages.</p>
+			<p>Bref, nous sommes des récits sauvages."</p>
+			<p class="citation">(Wild Systems Theory: Non-Reductive Naturalism and Narratives of Meaning, Choice, and Self. J. Scott Jordan)</p>
+		</div>
 	</div>
 </Layout>
 
@@ -195,6 +201,28 @@ import Layout from '../layouts/Layout.astro';
 		margin: 0.2rem 0;
 		font-size: 0.8rem;
 		opacity: 0.8;
+	}
+	
+	/* Style pour le texte de théorie */
+	.theory-text {
+		margin-top: 2rem;
+		text-align: center;
+		max-width: 800px;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 0 1rem;
+	}
+	
+	.theory-text p {
+		margin: 0.5rem 0;
+		font-size: 0.9rem;
+		line-height: 1.5;
+	}
+	
+	.theory-text .citation {
+		font-style: italic;
+		font-size: 0.8rem;
+		margin-top: 1rem;
 	}
 	
 	@media (max-width: 768px) {
