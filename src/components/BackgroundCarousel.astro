@@ -25,13 +25,12 @@ const imageFiles = [
     '/img/WS---site-v1---photo-n°23.jpg'
 ];
 
-// Mélanger les images aléatoirement pour plus de dynamisme
-const shuffledImages = [...imageFiles].sort(() => Math.random() - 0.5);
+// Utiliser directement imageFiles au lieu de shuffledImages
 ---
 
 <div class="background-carousel">
     <div class="carousel-container">
-        {shuffledImages.map((imagePath, index) => (
+        {imageFiles.map((imagePath, index) => (
             <div class="carousel-slide" data-index={index} style={index === 0 ? 'opacity: 1;' : 'opacity: 0;'}>
                 <img src={imagePath} alt="" />
             </div>
