@@ -40,14 +40,14 @@ import Layout from '../layouts/Layout.astro';
 					<p>Selon la Théorie des Systèmes Sauvages - Wild Systems Theory, "toutes les propriétés sont constituées de et par leurs relations avec le contexte. En conséquence, toutes les propriétés sont intrinsèquement significatives car elles concernent naturellement et nécessairement les contextes dans lesquels elles persistent. Dans cette perspective, le sens est un réseau omniprésent d'interrelations. Le choix est le moyen par lequel nous y naviguons. Le soi est le modèle d'interrelations que nous incarnons et gérons au cours de notre vie. Parce que ces soi significatifs émergent progressivement de la trajectoire de la vie vécue, ils ressemblent à une histoire ; c'est-à-dire que ce sont des récits. Et parce que ces récits reflètent toujours une constellation de choix et de hasard, ils sont sauvages.</p>
 					<p>Bref, nous sommes des récits sauvages."</p>
 					<p class="citation">(Wild Systems Theory: Non-Reductive Naturalism and Narratives of Meaning, Choice, and Self. J. Scott Jordan)</p>
+					<br>
+					<br>
+					<p>81 bis route de la troche 78490 grosrouvre fr</p>
+					<p>vincent.benhamou@wildsystems.fr</p>
+					<p>+33 7 49 69 62 55</p>
 				</div>
 			</div>
 
-			<div class="contact-info">
-				<p>81 bis route de la troche 78490 grosrouvre fr</p>
-				<p>vincent.benhamou@wildsystems.fr</p>
-				<p>+33 7 49 69 62 55</p>
-			</div>
 		</div>
 	</div>
 </Layout>
@@ -205,11 +205,17 @@ import Layout from '../layouts/Layout.astro';
 		.background-image {
 			position: relative;
 			width: 100%;
-			height: 40vh;
+			height: 35vh;
+		}
+
+		.vincent-photo {
+			object-position: top center;
 		}
 
 		.left-header {
 			position: absolute;
+			top: 1rem;
+			left: 1rem;
 		}
 
 		.right-content {
@@ -217,16 +223,95 @@ import Layout from '../layouts/Layout.astro';
 			width: 100%;
 			padding: 1rem;
 			min-height: auto;
+			background-color: black;
+			box-sizing: border-box;
+		}
+
+		.back-button {
+			position: absolute;
+			top: 1rem;
+			right: 1rem;
 		}
 
 		.form-section {
-			padding: 1rem;
-			padding-top: 2rem;
+			padding-top: 1.5rem;
+			width: 100%;
+			box-sizing: border-box;
+		}
+
+		.contact-form {
+			padding: 0 1rem;
+			width: 100%;
+			box-sizing: border-box;
+			max-width: 100%;
 		}
 
 		.theory-text {
+			padding: 0 1rem;
+			font-size: 0.7rem;
+			margin-top: 1.5rem;
+			width: 100%;
+			box-sizing: border-box;
+			text-align: left;
+		}
+
+		.round-input {
+			padding: 0.6rem 0.8rem;
+			font-size: 0.8rem;
+			width: 100%;
+			box-sizing: border-box;
+		}
+
+		textarea.round-input {
+			height: 80px;
+			width: 100%;
+			box-sizing: border-box;
+		}
+
+		h1 {
+			font-size: 2rem;
+		}
+
+		.back-button {
+			font-size: 1rem;
+		}
+
+		.round-button {
+			padding: 0.4rem 0.8rem;
+			font-size: 0.8rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.background-image {
+			height: 30vh;
+		}
+
+		h1 {
+			font-size: 1.8rem;
+		}
+
+		.form-section {
+			padding-top: 1rem;
+		}
+
+		.contact-form {
+			padding: 0 0.8rem;
+		}
+
+		.theory-text {
+			padding: 0 0.8rem;
+			font-size: 0.65rem;
+			line-height: 1.3;
 			margin-top: 1rem;
-			margin-bottom: 1rem;
+		}
+
+		.round-input {
+			padding: 0.5rem 0.7rem;
+		}
+
+		.form-group {
+			margin-bottom: 0.5rem;
 		}
 	}
 </style>
