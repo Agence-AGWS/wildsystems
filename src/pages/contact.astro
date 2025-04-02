@@ -105,7 +105,7 @@ import Layout from '../layouts/Layout.astro';
 	.contact-container {
 		display: flex;
 		gap: 2rem;
-		max-width: 1200px;
+		max-width: 100%;
 		margin: 0 auto;
 		flex: 1;
 		overflow: hidden;
@@ -114,15 +114,15 @@ import Layout from '../layouts/Layout.astro';
 	.photo-container {
 		flex: 1;
 		display: flex;
-		align-items: center;
+		align-items: flex-start;
 		justify-content: center;
 		overflow: hidden;
+		height: 50vh;
 	}
 	
 	.vincent-photo {
-		max-width: 100%;
-		height: auto;
-		max-height: 70vh;
+		width: 100%;
+		height: 100%;
 		object-fit: cover;
 		object-position: top center;
 	}
@@ -131,8 +131,9 @@ import Layout from '../layouts/Layout.astro';
 		flex: 1;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: flex-start;
 		overflow: hidden;
+		padding-right: 2rem;
 	}
 	
 	.contact-form {
@@ -206,11 +207,9 @@ import Layout from '../layouts/Layout.astro';
 	/* Style pour le texte de théorie */
 	.theory-text {
 		margin-top: 2rem;
-		text-align: center;
-		max-width: 800px;
-		margin-left: auto;
-		margin-right: auto;
-		padding: 0 1rem;
+		text-align: left;
+		max-width: 100%;
+		padding: 0;
 	}
 	
 	.theory-text p {
