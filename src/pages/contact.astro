@@ -1,5 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+// Clé Web3Forms (publique par conception) : les messages arrivent sur vincent.benhamou@wildsystems.fr
+const WEB3FORMS_KEY = 'd94a2483-ba9b-4e52-8789-a7d46571267b';
 ---
 
 <Layout>
@@ -16,7 +19,12 @@ import Layout from '../layouts/Layout.astro';
 			<a href="/" class="back-button">retour</a>
 
 			<div class="form-section">
-				<form class="contact-form">
+				<form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+					<input type="hidden" name="access_key" value={WEB3FORMS_KEY}>
+					<input type="hidden" name="subject" value="Nouveau message depuis wildsystems.fr">
+					<input type="hidden" name="from_name" value="Site Wild Systems">
+					<input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+
 					<div class="form-group">
 						<input type="text" id="name" name="name" placeholder="nom prénom" required class="round-input">
 					</div>
@@ -34,6 +42,7 @@ import Layout from '../layouts/Layout.astro';
 					</div>
 					
 					<button type="submit" class="round-button">envoyer</button>
+					<p class="form-status" role="status" aria-live="polite"></p>
 				</form>
 
 				<div class="theory-text">
@@ -51,6 +60,41 @@ import Layout from '../layouts/Layout.astro';
 		</div>
 	</div>
 </Layout>
+
+<script>
+	const form = document.querySelector<HTMLFormElement>('.contact-form');
+	const button = form?.querySelector<HTMLButtonElement>('.round-button');
+	const status = form?.querySelector<HTMLParagraphElement>('.form-status');
+
+	form?.addEventListener('submit', async (event) => {
+		event.preventDefault();
+		if (!form || !button || !status) return;
+
+		button.disabled = true;
+		button.textContent = 'envoi...';
+		status.textContent = '';
+		status.classList.remove('error');
+
+		try {
+			const response = await fetch(form.action, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+				body: JSON.stringify(Object.fromEntries(new FormData(form))),
+			});
+			const result = await response.json();
+			if (!response.ok || !result.success) throw new Error(result.message);
+
+			form.reset();
+			status.textContent = 'message envoyé, merci.';
+		} catch {
+			status.classList.add('error');
+			status.textContent = "l'envoi a échoué, écrivez directement à vincent.benhamou@wildsystems.fr";
+		} finally {
+			button.disabled = false;
+			button.textContent = 'envoyer';
+		}
+	});
+</script>
 
 <style>
 	.contact-page {
@@ -164,6 +208,27 @@ import Layout from '../layouts/Layout.astro';
 		font-family: inherit;
 		font-size: 0.9rem;
 		cursor: pointer;
+	}
+
+	.round-button:disabled {
+		opacity: 0.5;
+		cursor: default;
+	}
+
+	.botcheck {
+		display: none;
+	}
+
+	.form-status {
+		margin: 0;
+		min-height: 1em;
+		text-align: right;
+		font-size: 0.8rem;
+		color: rgba(255, 255, 255, 0.8);
+	}
+
+	.form-status.error {
+		color: rgba(255, 140, 140, 0.9);
 	}
 
 	.theory-text {
